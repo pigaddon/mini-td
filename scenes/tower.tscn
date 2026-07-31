@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://tower001"]
+
+[ext_resource type="Script" path="res://scripts/tower.gd" id="1_tower"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_click"]
+radius = 18.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_tower")
+
+[node name="RangeVisual" type="Polygon2D" parent="."]
+z_index = -1
+
+[node name="Base" type="Polygon2D" parent="."]
+color = Color(0.25, 0.28, 0.32, 1)
+polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[node name="Body" type="Polygon2D" parent="."]
+color = Color(0.35, 0.72, 0.48, 1)
+polygon = PackedVector2Array(-8, -10, 18, 0, -8, 10)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="ClickArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+monitorable = false
+input_pickable = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+shape = SubResource("CircleShape2D_click")

@@ -1,0 +1,250 @@
+[gd_scene load_steps=2 format=3 uid="uid://main001"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Background" type="Polygon2D" parent="."]
+z_index = -20
+color = Color(0.12, 0.16, 0.14, 1)
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
+
+[node name="GridDraw" type="Node2D" parent="."]
+
+[node name="PathVisual" type="Line2D" parent="."]
+z_index = -10
+width = 10.0
+default_color = Color(0.55, 0.45, 0.3, 0.55)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Towers" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="BaseFlag" type="Polygon2D" parent="."]
+color = Color(0.95, 0.75, 0.2, 1)
+polygon = PackedVector2Array(-8, -28, 18, -14, -8, 0)
+
+[node name="BasePole" type="Polygon2D" parent="."]
+color = Color(0.7, 0.7, 0.7, 1)
+polygon = PackedVector2Array(-2, -30, 2, -30, 2, 20, -2, 20)
+
+[node name="SpawnMarker" type="Polygon2D" parent="."]
+color = Color(0.7, 0.2, 0.2, 0.85)
+polygon = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="TopBar" type="HBoxContainer" parent="HUD"]
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 780.0
+offset_bottom = 44.0
+theme_override_constants/separation = 18
+
+[node name="GoldLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "金币: 0"
+
+[node name="LivesLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.45, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "生命: 0"
+
+[node name="WaveLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "波次: 0"
+
+[node name="TowersLabel" type="Label" parent="HUD/TopBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.95, 0.8, 1)
+theme_override_font_sizes/font_size = 18
+text = "塔: 0"
+
+[node name="WavePreviewLabel" type="Label" parent="HUD"]
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 900.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.85, 0.85, 0.75, 1)
+theme_override_font_sizes/font_size = 14
+text = "下一波预告:"
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+offset_left = 12.0
+offset_top = 66.0
+offset_right = 700.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0.75, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = ""
+
+[node name="StartWaveButton" type="Button" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 8.0
+offset_right = -12.0
+offset_bottom = 40.0
+grow_horizontal = 0
+text = "开波/提前 (空格)"
+
+[node name="PauseButton" type="Button" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 44.0
+offset_right = -114.0
+offset_bottom = 72.0
+grow_horizontal = 0
+text = "暂停 (P)"
+
+[node name="SpeedButton" type="Button" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -110.0
+offset_top = 44.0
+offset_right = -12.0
+offset_bottom = 72.0
+grow_horizontal = 0
+text = "速度 ×1 (F)"
+
+[node name="TowerBar" type="HBoxContainer" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -120.0
+offset_right = 240.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="HintLabel" type="Label" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -56.0
+offset_right = 420.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 15
+text = "先选择地图和难度"
+horizontal_alignment = 1
+
+[node name="InfoPanel" type="PanelContainer" parent="HUD"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -260.0
+offset_top = 88.0
+offset_right = -12.0
+offset_bottom = 320.0
+grow_horizontal = 0
+
+[node name="Margin" type="MarginContainer" parent="HUD/InfoPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="VBox" type="VBoxContainer" parent="HUD/InfoPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="InfoLabel" type="Label" parent="HUD/InfoPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "塔信息"
+autowrap_mode = 3
+
+[node name="UpgradeButton" type="Button" parent="HUD/InfoPanel/Margin/VBox"]
+layout_mode = 2
+text = "升级"
+
+[node name="TechButton" type="Button" parent="HUD/InfoPanel/Margin/VBox"]
+layout_mode = 2
+text = "科技突破"
+
+[node name="SellButton" type="Button" parent="HUD/InfoPanel/Margin/VBox"]
+layout_mode = 2
+text = "出售"
+
+[node name="DifficultyPanel" type="PanelContainer" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -220.0
+offset_right = 340.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="HUD/DifficultyPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="HUD/DifficultyPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="HUD/DifficultyPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "迷你塔防 — 选择地图与难度"
+horizontal_alignment = 1
+
+[node name="Overlay" type="ColorRect" parent="HUD"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="Message" type="Label" parent="HUD/Overlay"]
+layout_mode = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -70.0
+offset_right = 300.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 26
+text = "游戏结束"
+horizontal_alignment = 1
+vertical_alignment = 1

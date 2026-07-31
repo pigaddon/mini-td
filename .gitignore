@@ -1,0 +1,25 @@
+# Godot 4
+.godot/
+*.translation
+export.cfg
+*.apk
+*.aab
+*.zip
+*.pck
+*.exe
+*.app
+.mono/
+data_*/
+build/
+*.keystore
+*.jks
+android/build/
+
+# Local toolchains / huge binaries (do not publish)
+tools/jdk-17/
+tools/*.tpz
+tools/*.tpz.part
+tools/Android/
+*.ttc
+*.ttf
+!assets/fonts/NotoSansSC-Regular.otf

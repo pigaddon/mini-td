@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>迷你塔防 - 下载</title>
+  <style>
+    :root {
+      --bg0: #0f1a14;
+      --bg1: #1a2e22;
+      --ink: #e8f0ea;
+      --muted: #9bb0a2;
+      --accent: #d4a84b;
+      --accent-hover: #e8c06a;
+      --line: rgba(212, 168, 75, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 168, 75, 0.18), transparent 55%),
+        linear-gradient(165deg, var(--bg1) 0%, var(--bg0) 55%, #0a120e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    main {
+      width: min(440px, 100%);
+      text-align: center;
+    }
+
+    .brand {
+      font-size: clamp(2.4rem, 8vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 36px;
+      line-height: 1.5;
+    }
+
+    .download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 220px;
+      padding: 16px 28px;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      background: var(--accent);
+      color: #1a1408;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .download:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .note {
+      margin-top: 22px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .note a { color: var(--accent-hover); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="brand">迷你塔防</h1>
+    <p class="lead">Android 安装包下载</p>
+    <a class="download" href="https://github.com/pigaddon/mini-td/releases/latest/download/MiniTD.apk">下载 APK</a>
+    <p class="note">
+      安装时如提示未知来源，请在系统设置中允许安装<br />
+      源码：<a href="https://github.com/pigaddon/mini-td">github.com/pigaddon/mini-td</a>
+    </p>
+  </main>
+</body>
+</html>
